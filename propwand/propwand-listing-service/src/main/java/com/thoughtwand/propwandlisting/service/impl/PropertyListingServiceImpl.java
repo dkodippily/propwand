@@ -14,8 +14,20 @@ public class PropertyListingServiceImpl implements PropertyListingService {
 	private PropertyListingRepository repository;
 	
 	@Override
-	public void createProperty(Property property) {
-		repository.save(property);
+	public Property createProperty(Property property) {
+		return repository.save(property);
+	}
+
+	@Override
+	public Property updateProperty(Property property, Long id) {
+		return repository.findById(id)
+			.map ( p -> {
+				p
+				.title(property.getTitle())
+				.address(property.getAddress())
+				.value(property.getValue());
+				return repository.save(p);
+			}).get();
 	}
 
 }
