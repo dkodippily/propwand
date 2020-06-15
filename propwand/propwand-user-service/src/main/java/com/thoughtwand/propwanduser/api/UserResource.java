@@ -1,11 +1,14 @@
 package com.thoughtwand.propwanduser.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.thoughtwand.propwanduser.domain.User;
 import com.thoughtwand.propwanduser.service.UserService;
+
+import io.swagger.annotations.ApiOperation;
 
 /**
  * @author Dayan Kodippily - 23/05/20
@@ -18,16 +21,16 @@ public class UserResource {
 	@Autowired
 	private UserService userService;
 
-	@GetMapping("/user/{email}")
+	@GetMapping(value = "/{email}",produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation (value = "Get the user for the matching email", response = User.class)
 	public User findUser(@PathVariable(value = "email") String email) {
-		User user = userService.findUserByEmail(email);
-		return user;
+		return userService.findUserByEmail(email);		
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<String> createUser(@RequestBody User user) {
-		userService.createUser(user);
-		return ResponseEntity.ok().body("Created...");
+	@ApiOperation (value = "Create a new User in the system", response = User.class)
+	public User createUser(@RequestBody User user) {
+		return userService.createUser(user);		
 	}
 
 }
