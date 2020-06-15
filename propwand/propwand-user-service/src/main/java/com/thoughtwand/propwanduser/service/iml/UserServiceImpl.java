@@ -14,13 +14,18 @@ public class UserServiceImpl implements UserService {
 	UserRepository userRepository;
 
 	@Override
-	public void createUser(User user) {
-		userRepository.save(user);
+	public User createUser(User user) {
+		return userRepository.save(user);
 	}
 
 	@Override
 	public User findUserByEmail(String email) {
 		return userRepository.findUserByEmail(email);
+	}
+
+	@Override
+	public User findById(Long id) {
+		return userRepository.findById(id).get();
 	}
 
 }

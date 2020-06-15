@@ -4,7 +4,9 @@ import com.thoughtwand.propwanduser.domain.User;
 
 public interface UserService {
 	
-	public void createUser(User user);
+	public User createUser(User user);
 
 	public User findUserByEmail(String email);
+	
+	public User findById(Long id);
 }
