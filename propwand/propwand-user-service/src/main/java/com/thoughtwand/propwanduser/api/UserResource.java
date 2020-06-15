@@ -1,27 +1,33 @@
-package com.thoughtwand.propwand.userservice.controller;
+package com.thoughtwand.propwanduser.api;
 
-import com.thoughtwand.propwand.userservice.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import com.thoughtwand.propwanduser.domain.User;
+import com.thoughtwand.propwanduser.service.UserService;
 
 /**
  * @author Dayan Kodippily - 23/05/20
  */
 
 @RestController
-@RequestMapping("propwand/vi/")
-public class UserController {
+@RequestMapping("api/users")
+public class UserResource {
 
+	@Autowired
+	private UserService userService;
 
-    @GetMapping("/user/{username}")
-    public ResponseEntity<String> findUser(@PathVariable(value = "username") String name) {
-        return  ResponseEntity.ok().body("Hello " + name + " Welcome..!!");
-    }
+	@GetMapping("/user/{email}")
+	public User findUser(@PathVariable(value = "email") String email) {
+		User user = userService.findUserByEmail(email);
+		return user;
+	}
 
-    @GetMapping("/user")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        return  ResponseEntity.ok().body("Hello " + user + " Welcome..!!");
-    }
-
+	@PostMapping("/create")
+	public ResponseEntity<String> createUser(@RequestBody User user) {
+		userService.createUser(user);
+		return ResponseEntity.ok().body("Created...");
+	}
 
 }

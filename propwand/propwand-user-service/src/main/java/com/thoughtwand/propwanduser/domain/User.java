@@ -1,80 +1,91 @@
-package com.thoughtwand.propwand.userservice.model;
+package com.thoughtwand.propwanduser.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 /**
  * @author Dayan Kodippily - 18/05/20
  */
 
 @Entity
-@Table(name = "user_info")
-public class User implements Serializable {
+@Table(name = "user")
+public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Enumerated(EnumType.STRING)
-    private UserSalutation salutation;
+	@Enumerated(EnumType.STRING)
+	private UserSalutation salutation;
 
-    private String givenName;
+	@Column(unique = true, nullable = false)
+	private String email;
 
-    private String surname;
+	@Column(nullable = false)
+	private String firstName;
 
-    @Enumerated(EnumType.STRING)
-    private UserSex userSex;
+	@Column(nullable = false)
+	private String lastName;
 
-    @Enumerated(EnumType.STRING)
-    private UserStatus userStatus;
+	@Enumerated(EnumType.STRING)
+	private UserSex userSex;
 
-    public Long getUserId() {
-        return userId;
-    }
+	@Enumerated(EnumType.STRING)
+	private UserStatus userStatus;
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public UserSalutation getSalutation() {
-        return salutation;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setSalutation(UserSalutation salutation) {
-        this.salutation = salutation;
-    }
+	public UserSalutation getSalutation() {
+		return salutation;
+	}
 
-    public String getGivenName() {
-        return givenName;
-    }
+	public void setSalutation(UserSalutation salutation) {
+		this.salutation = salutation;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
 
-    public void setGivenName(String givenName) {
-        this.givenName = givenName;
-    }
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
-    public String getSurname() {
-        return surname;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public UserSex getUserSex() {
-        return userSex;
-    }
+	public String getLastName() {
+		return lastName;
+	}
 
-    public void setUserSex(UserSex userSex) {
-        this.userSex = userSex;
-    }
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
-    public UserStatus getUserStatus() {
-        return userStatus;
-    }
+	public UserSex getUserSex() {
+		return userSex;
+	}
 
-    public void setUserStatus(UserStatus userStatus) {
-        this.userStatus = userStatus;
-    }
+	public void setUserSex(UserSex userSex) {
+		this.userSex = userSex;
+	}
 
+	public UserStatus getUserStatus() {
+		return userStatus;
+	}
+
+	public void setUserStatus(UserStatus userStatus) {
+		this.userStatus = userStatus;
+	}
 
 }

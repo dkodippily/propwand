@@ -1,4 +1,4 @@
-package com.thoughtwand.propwand.userservice;
+package com.thoughtwand.propwanduser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

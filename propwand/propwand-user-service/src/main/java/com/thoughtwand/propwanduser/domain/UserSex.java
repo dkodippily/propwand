@@ -1,4 +1,4 @@
-package com.thoughtwand.propwand.userservice.model;
+package com.thoughtwand.propwanduser.domain;
 
 /**
  * @author Dayan Kodippily - 18/05/20
